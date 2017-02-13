@@ -15,10 +15,16 @@ public class RecursiveSplitterService {
     private static int sCounter = 0;
     private static int wCounter = 0;
     private static int chCounter = 0;
+    
+    private static final String PARAGRAPH_REGEX = "[А-Я].+[\\.\\!\\?\\...]";
+    private static final String SENTENCE_REGEX = "[А-Я].+?[\\.\\!\\?\\.]";
+    private static final String WORD_REGEX = "[А-Я-а-я]+";
+    private static final String LETTER_REGEX = "[А-Яа-я]";
+   
 
     public static void split(Entity entity){
         // Split text to paragraphs
-        recursiveSplit(entity,"[А-Я].+[\\.\\!\\?\\...]");
+        recursiveSplit(entity,PARAGRAPH_REGEX);
     }
 
     private static void recursiveSplit(Entity entity, String regex){
@@ -30,19 +36,19 @@ public class RecursiveSplitterService {
                 Paragraph paragraph = new Paragraph();
                 paragraph.setString(entity.getString().substring(m.start(),m.end()));
                 // Split paragraph to sentences
-                recursiveSplit(paragraph,"[А-Я].+?[\\.\\!\\?\\.]");
+                recursiveSplit(paragraph,SENTENCE_REGEX);
                 pCounter++;
             }else if(entity instanceof Paragraph){
                 Sentence sentence = new Sentence();
                 sentence.setString(entity.getString().substring(m.start(), m.end()));
                 // Split sentence to words
-                recursiveSplit(sentence,"[А-Я-а-я]+");
+                recursiveSplit(sentence,WORD_REGEX);
                 sCounter++;
             }else if(entity instanceof Sentence){
                 Word word = new Word();
                 word.setString(entity.getString().substring(m.start(),m.end()));
                 //Split words to chars
-                recursiveSplit(word,"[А-Яа-я]");
+                recursiveSplit(word,LETTER_REGEX);
                 wCounter++;
             }else if(entity instanceof Word){
                 chCounter++;
