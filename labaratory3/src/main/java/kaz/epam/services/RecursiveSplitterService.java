@@ -55,10 +55,13 @@ public class RecursiveSplitterService {
         }else if(entity instanceof Paragraph){
             System.out.println("Количество предложении в параграфе - "+sCounter);
             System.out.println("________________________________________________________________");
+            sCounter = 0;
         }else if(entity instanceof Sentence){
             System.out.println("[ Количество слов в предложении - "+wCounter+" ]");
+            wCounter = 0;
         }else if(entity instanceof Word){
             System.out.print(entity.getString()+"("+chCounter+") ");
+            chCounter = 0;
         }
     }
 }
