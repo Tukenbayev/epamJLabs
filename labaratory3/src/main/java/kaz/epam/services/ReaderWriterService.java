@@ -9,13 +9,13 @@ public class ReaderWriterService {
     public static void getDataFromFile(Text text) throws IOException {
         Reader reader = createReader();
         while (reader.ready()){
-            text.getFullText().append(Character.toString((char) reader.read()));
+            text.getStringBuilder().append(Character.toString((char) reader.read()));
         }
         reader.close();
     }
 
     public static void writeDataToNewFile(Text text) throws IOException {
-        char[] chars = text.getFullText().toString().toCharArray();
+        char[] chars = text.getStringBuilder().toString().toCharArray();
         OutputStreamWriter writer = createWriter();
         writer.write(chars);
         writer.close();

@@ -1,14 +1,14 @@
 package kaz.epam.entities;
 
-public class Sentence {
+import kaz.epam.interfaces.Entity;
 
-    private String sentence;
+public class Sentence implements Entity {
 
-    public String getSentence() {
-        return sentence;
-    }
+    private String string;
 
-    public void setSentence(String sentence) {
-        this.sentence = sentence;
+    public String getString() {return string;}
+
+    public void setString(String string) {
+        this.string = string;
     }
 }

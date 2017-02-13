@@ -1,14 +1,14 @@
 package kaz.epam.entities;
 
-public class Word {
+import kaz.epam.interfaces.Entity;
 
-    private String word;
+public class Word implements Entity {
 
-    public String getWord() {
-        return word;
-    }
+    private String string;
 
-    public void setWord(String word) {
-        this.word = word;
+    public String getString() {return string;}
+
+    public void setString(String string) {
+        this.string = string;
     }
 }

@@ -1,14 +1,14 @@
 package kaz.epam.entities;
 
-public class Paragraph {
+import kaz.epam.interfaces.Entity;
 
-    private String paragraph;
+public class Paragraph implements Entity{
 
-    public String getParagraph() {
-        return paragraph;
-    }
+    private String string;
 
-    public void setParagraph(String paragraph) {
-        this.paragraph = paragraph;
+    public String getString() {return string;}
+
+    public void setString(String string) {
+        this.string = string;
     }
 }

@@ -7,17 +7,18 @@ import kaz.epam.entities.Word;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class SplitterService {
 
     public static void split(Text text){
         int pCounter = 0;
-        String fullText = text.getFullText().toString();
+        String fullText = text.getStringBuilder().toString();
         Pattern p = Pattern.compile("[А-Я].+[\\.\\!\\?\\...]");
         Matcher m = p.matcher(fullText);
 
         while(m.find()) {
             Paragraph paragraph = new Paragraph();
-            paragraph.setParagraph(fullText.substring(m.start(),m.end()));
+            paragraph.setString(fullText.substring(m.start(),m.end()));
             // Разделяем параграф на предложения
             splitToSentences(paragraph);
             pCounter++;
@@ -32,12 +33,12 @@ public class SplitterService {
 
         Pattern p = Pattern.compile("[А-Я].+?[\\.\\!\\?\\.]");
 
-        Matcher m = p.matcher(paragraph.getParagraph());
+        Matcher m = p.matcher(paragraph.getString());
 
 
         while (m.find()) {
             Sentence sentence = new Sentence();
-            sentence.setSentence(paragraph.getParagraph().substring(m.start(), m.end()));
+            sentence.setString(paragraph.getString().substring(m.start(), m.end()));
             // Разделяем предложения на слова
             splitToWords(sentence);
             counter++;
@@ -51,11 +52,11 @@ public class SplitterService {
     private static void splitToWords(Sentence sentence){
         int counter = 0;
         Pattern p = Pattern.compile("[А-Я-а-я]+");
-        Matcher m = p.matcher(sentence.getSentence());
+        Matcher m = p.matcher(sentence.getString());
 
         while(m.find()) {
             Word word = new Word();
-            word.setWord(sentence.getSentence().substring(m.start(),m.end()));
+            word.setString(sentence.getString().substring(m.start(),m.end()));
             //Разделяем слова на буквы
             splitToChars(word);
             counter++;
@@ -68,12 +69,12 @@ public class SplitterService {
     private static void splitToChars(Word word){
         int counter = 0;
         Pattern p = Pattern.compile("[А-Яа-я]");
-        Matcher m = p.matcher(word.getWord());
+        Matcher m = p.matcher(word.getString());
 
         while(m.find()) {
             counter++;
         }
-        System.out.print(word.getWord()+"("+counter+") ");
+        System.out.print(word.getString()+"("+counter+") ");
         counter = 0;
     }
 

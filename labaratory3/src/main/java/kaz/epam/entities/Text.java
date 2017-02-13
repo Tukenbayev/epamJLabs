@@ -1,15 +1,20 @@
 package kaz.epam.entities;
 
-public class Text {
+import kaz.epam.interfaces.Entity;
 
-    private StringBuilder fullText = new StringBuilder();
+public class Text implements Entity {
 
-    public StringBuilder getFullText() {
-        return fullText;
+    private StringBuilder stringBuilder = new StringBuilder();
+    private String string = stringBuilder.toString();
+
+    public StringBuilder getStringBuilder() {
+        return stringBuilder;
     }
 
-    public void setFullText(StringBuilder fullText) {
-        this.fullText = fullText;
+    public String getString(){return string;}
+
+    public void setString(String string) {
+        this.string = string;
     }
 
 

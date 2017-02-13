@@ -2,6 +2,7 @@ package kaz.epam;
 
 import kaz.epam.entities.Text;
 import kaz.epam.services.ReaderWriterService;
+import kaz.epam.services.RecursiveSplitterService;
 import kaz.epam.services.SplitterService;
 
 import java.io.*;
@@ -19,7 +20,10 @@ public class App
         ReaderWriterService.getDataFromFile(text);
 
         // Расщепляем текст на составляющие
-        SplitterService.split(text);
+        //SplitterService.split(text);
+
+
+        RecursiveSplitterService.split(text);
 
         //Записываем текст в новый файл
         ReaderWriterService.writeDataToNewFile(text);
