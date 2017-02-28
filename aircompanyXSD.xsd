@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.bekair.com"
+        xmlns:company="http://www.bekair.com">
+
+    <element name="aircompany">
+        <complexType>
+            <sequence>
+                <element name="planes" type="company:Planes" minOccurs="1" maxOccurs="1"/>
+                <element name="departments" type="company:Departments" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+            <attribute name="name" type="string" use="required"/>
+        </complexType>
+    </element>
+
+    <complexType name="Planes">
+        <sequence>
+            <element name="plane" type="company:Plane"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Plane">
+        <attribute name="model" use="required">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="IL86"></enumeration>
+                    <enumeration value="SuperJet100"></enumeration>
+                    <enumeration value="TU134"></enumeration>
+                    <enumeration value="TU154"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <complexType name="Departments">
+        <sequence>
+            <element name="department" type="company:Department" minOccurs="1" maxOccurs="2"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Department">
+        <sequence>
+            <element name="staff_list" type="company:Staff" maxOccurs="1"/>
+        </sequence>
+        <attribute name="type" use="required">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="technical"></enumeration>
+                    <enumeration value="flight"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <complexType name="Staff">
+        <all>
+            <element name="technical_staff" type="company:TechnicalStaff"/>
+            <element name="pilot" type="company:Pilot"/>
+            <element name="airsteward" type="company:AirSteward"/>
+        </all>
+    </complexType>
+
+    <complexType name="TechnicalStaff">
+        <sequence>
+            <element name="position" type="string"/>
+            <element name="salary" type="int"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Pilot">
+        <sequence>
+            <element name="position" type="string"/>
+            <element name="salary" type="int"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="AirSteward">
+        <sequence>
+            <element name="position" type="string"/>
+            <element name="salary" type="int"/>
+        </sequence>
+    </complexType>
+</schema>
