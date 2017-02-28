@@ -32,7 +32,7 @@ public class ReaderWriterService {
     }
 
     private static OutputStreamWriter createWriter() throws FileNotFoundException, UnsupportedEncodingException {
-        FileOutputStream fileOutputStream = new FileOutputStream("D:/test.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("C:/test.txt");
         return new OutputStreamWriter(fileOutputStream,"Cp1251");
     }
 
